@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\ProjectStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use PhpParser\Node\Expr\Cast;
 
 class Project extends Model
 {
@@ -24,7 +24,19 @@ class Project extends Model
     protected function casts(): array
     {
         return [
-            'tech_stack' => 'array'
+            'tech_stack' => 'array',
+            'status' => ProjectStatus::class,
+            'ends_at' => 'datetime'
         ];
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class);
     }
 }
