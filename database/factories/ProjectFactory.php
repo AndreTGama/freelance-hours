@@ -1,0 +1,39 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
+ */
+class ProjectFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+           'title' => collect(fake()->words(5))->join(' '),
+           'description' => fake()->randomHtml(),
+           'ends_at' => fake()->dateTimeBetween('now', '+ 3 days'),
+           'status' => fake()->randomElement(['OPEN', 'CLOSED']),
+           'tech_stack' => fake()->randomElements([
+                'Laravel',
+                'React',
+                'Node.js',
+                'Next.js',
+                'PHP',
+                'C#',
+                'Java',
+                'Blade',
+                'C'
+            ], random_int(2, 5)),
+           'created_by' => User::factory()
+        ];
+    }
+}
