@@ -1,3 +1,4 @@
-<div>
-    <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
-</div>
+<x-layouts.app>
+    <a href="{{ route('projects.show', 1) }}">Meu Projeto</a>
+    <livewire:projects.index />
+</x-layouts.app>
