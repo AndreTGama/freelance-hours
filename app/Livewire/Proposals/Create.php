@@ -37,6 +37,9 @@ class Create extends Component
             ['user_id' => $user->id],
             ['hours' => $this->hours]
         );
+
+        $this->dispatch('proposal::created');
+        
         $this->modal = false;
     }
 
