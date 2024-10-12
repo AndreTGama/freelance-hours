@@ -15,6 +15,8 @@ class Proposal extends Model
         'user_id',
         'hours',
         'project_id',
+        'position_status',
+        'position'
     ];
 
     public function author()

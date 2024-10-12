@@ -7,6 +7,7 @@ use App\Models\Proposal;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,17 @@ class DatabaseSeeder extends Seeder
                         'project_id' => $project->id,
                         'user_id' => User::query()->inRandomOrder()->first()->id
                     ]);
+
+                $rankedProposals = DB::table('proposals')
+                    ->select('id', DB::raw('ROW_NUMBER() OVER (ORDER BY hours ASC) as position'))
+                    ->where('project_id', $project->id)
+                    ->get();
+
+                foreach ($rankedProposals as $proposal) {
+                    DB::table('proposals')
+                        ->where('id', $proposal->id)
+                        ->update(['position' => $proposal->position]);
+                }
             });
     }
 }
