@@ -21,3 +21,15 @@ input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
+.perspective {
+    perspective: 1000px;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
