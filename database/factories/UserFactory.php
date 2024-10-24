@@ -27,7 +27,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => 'password',
             'rating' => fake()->randomElement([1,2,3,4,5]),
             'avatar' => 'https://avatar.iran.liara.run/public'
         ];
